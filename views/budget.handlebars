@@ -1,0 +1,176 @@
+<!-- Start of the Main Container -->
+<div class="container">
+  <!-- Jumbotron -->
+  <div class="jumbotron jumbotron-fluid col-md-12">
+    <div class="container">
+      <div class="col-md-7">
+        <h1 class="display-4">Budget Minder</h1>
+        <p class="lead">Help track your monthly budget. Add an expense or income source to get started.</p>
+        <!-- Handlebars integration for the user name - which is an email address -->
+        <h3><strong>Welcome:</strong> <span class="member-name"></span></h3>
+        <br>
+        <a href="/logout"><button type="button" class="btn btn-info"><i class="fas fa-sign-out-alt"></i> Logout</button></a>
+      </div>
+    </div>
+  </div>
+  <!-- Row for buttons that will add expense or income -->
+  <div class="row" id="addingButtons">
+    <button type="button" class="btn btn-success btn-lg" id="incomeButton" data-toggle="modal" data-target="#addIncome"><i
+        class="fas fa-plus"></i>
+      Income</button>
+    <button type="button" class="btn btn-danger btn-lg" id="expenseButton" data-toggle="modal" data-target="#addExpense"><i
+        class="fas fa-plus"></i>
+      Expense</button>
+  </div>
+  <br>
+
+  <!-- Row for the 3 Graphs from Chart.js -->
+  <div class="row">
+    <!-- Div for the Income/Expense Pie Chart -->
+    <div class="col-md-4">
+      <canvas id="myChartNet" width="400" height="400"></canvas>
+      <h3>Net = $<span id="netDollars"></span></h3>
+    </div>
+    <!-- Div for the Income Graph -->
+    <div class="col-md-4">
+      <canvas id="myChartIncome" width="400" height="400"></canvas>
+      <h3>Income</h3>
+    </div>
+    <!-- Div for the Expenses Graph -->
+    <div class="col-md-4">
+      <canvas id="myChartExpense" width="400" height="400"></canvas>
+      <h3>Expenses</h3>
+    </div>
+  </div>
+  <br>
+
+  <!-- Table for Income -->
+  <div class="card">
+    <div class="card-header">
+      <h2>INCOME</h2>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped" id="incomeTable">
+        <thead>
+          <tr>
+            <th scope="col">SOURCE</th>
+            <th scope="col">CATEGORY</th>
+            <th scope="col">AMOUNT</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Handlebars integration for income -->
+          {{#each income}}
+          <tr>
+            <td> {{this.source}} </td>
+            <td> {{this.category}} </td>
+            <td> {{this.amount}} </td>
+            <td> <button type="button" data-incomeid="{{this.id}}" class="deleteIncome btn btn-warning">Delete <i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+
+  <!-- Table for Expenses -->
+  <div class="card">
+    <div class="card-header">
+      <h2>EXPENSES</h2>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped" id="expensesTable">
+        <thead>
+          <tr>
+            <th scope="col">SOURCE</th>
+            <th scope="col">CATEGORY</th>
+            <th scope="col">AMOUNT</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Handlebars integration for expenses -->
+          {{#each expense}}
+          <tr>
+            <td> {{this.source}} </td>
+            <td> {{this.category}} </td>
+            <td> {{this.amount}} </td>
+            <td> <button type="button" data-expenseid="{{this.id}}" class="deleteExpense btn btn-warning">Delete <i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Add Expenses -->
+<div class="modal" id="addExpense" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Expense</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="expense">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Source</label>
+            <input class="form-control" id="expense-source" type="text" placeholder="To Who?" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Category</label>
+            <input class="form-control" id="expense-category" type="text" placeholder="What Category?" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Amount Due</label>
+            <input class="form-control" id="expense-amount" type="number" placeholder="150.00" required min="0" step=".01">
+          </div>
+          <button type="submit" class="btn btn-info" id="submit-expense">Save Expense</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Add Income -->
+<div class="modal" id="addIncome" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Income</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="income">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Source</label>
+            <input class="form-control" id="income-source" type="text" placeholder="From Where?" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Category</label>
+            <input class="form-control" id="income-category" type="text" placeholder="What Category?" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Amount Gained</label>
+            <input class="form-control" id="income-amount" type="number" placeholder="150.00" required min="0" step=".01">
+          </div>
+          <button type="submit" class="btn btn-info" id="submit-income">Save Income</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>

@@ -1,0 +1,82 @@
+<div class="container">
+  <div id="home">
+    <div class="jumbotron jumbotron-fluid col-md-12">
+      <div class="container">
+        <div class="col-md-8">
+          <h1 class="display-4">Budget Minder</h1>
+          <p class="lead">Help track your monthly budget. Sign-up or Log-in to get started.</p>
+          <div style="text-align:center">
+            <button type="button" class="btn btn-info" id="loginButton" data-toggle="modal" data-target="#loginScreen"><i
+                class="fas fa-user"></i>
+              Log-in</button>
+            <button type="button" class="btn btn-info" id="createAccountButton" data-toggle="modal" data-target="#createAccount"><i
+                class="fas fa-user-plus"></i>
+              Create Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Create Account -->
+<div class="modal" id="createAccount" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="signup">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email Address</label>
+            <input type="email" class="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Me@domain.com" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password" required>
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <button type="submit" class="btn btn-info">Submit <i class="fas fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Log-in -->
+<div class="modal" id="loginScreen" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Log-in</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="login">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email Address</label>
+            <input type="email" class="form-control" id="emailLog-input" aria-describedby="emailHelp" placeholder="Me@domain.com" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="passwordLog-input" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-info">Submit <i class="fas fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>

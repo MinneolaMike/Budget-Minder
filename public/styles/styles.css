@@ -1,0 +1,62 @@
+body {
+  background-color: azure;
+}
+
+.jumbotron {
+  background-image: url("../images/budget.png");
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+h1.display-4 {
+  font-family: 'Changa One', cursive;
+  text-align: center; 
+  font-size: 70px 
+}
+
+p {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+h3 {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+
+#addingButtons{
+  justify-content: center;
+}
+
+#expenseButton{
+  margin: 0px 10px;
+}
+
+#incomeButton {
+  margin: 0px 10px;
+}
+
+h2 {
+  font-family: 'Lilita One', cursive;
+  text-align: center;
+}
+
+#incomeTable{
+  font-family: 'Nunito', sans-serif; 
+}
+
+#expensesTable {
+  font-family: 'Nunito', sans-serif;
+}
+
+.modal-header {
+  background-color: #F7F7F7;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
